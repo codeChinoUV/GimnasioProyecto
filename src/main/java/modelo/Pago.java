@@ -13,25 +13,36 @@ import java.util.List;
  * @author Miguel
  */
 public class Pago {
+  private int id;
   private LocalDate fecha;
   private double monto;
   private List<Promocion> promocionesAplicadas;
-  private Periodo periodoDeVencimientoMembresia;
+  private Cliente cliente;
+  private Periodo periodo;
+
+  public Pago(int id, LocalDate fecha, double monto) {
+    this.fecha = fecha;
+    this.monto = monto;
+    this.id = id;
+  }
+
+  public Pago() {
+  }
 
   public Pago(LocalDate fecha, double monto) {
     this.fecha = fecha;
     this.monto = monto;
   }
 
-  public Pago() {
-  }
-
-  public Pago(LocalDate fecha, double monto, Periodo periodoDeVencimientoMembresia) {
+  public Pago(int id, LocalDate fecha, double monto, List<Promocion> promocionesAplicadas, Cliente cliente, Periodo periodo) {
+    this.id = id;
     this.fecha = fecha;
     this.monto = monto;
-    this.periodoDeVencimientoMembresia = periodoDeVencimientoMembresia;
+    this.promocionesAplicadas = promocionesAplicadas;
+    this.cliente = cliente;
+    this.periodo = periodo;
   }
-
+  
   public LocalDate getFecha() {
     return fecha;
   }
@@ -56,13 +67,28 @@ public class Pago {
     this.promocionesAplicadas = promocionesAplicadas;
   }
 
-  public Periodo getPeriodoDeVencimientoMembresia() {
-    return periodoDeVencimientoMembresia;
+  public int getId() {
+    return id;
   }
 
-  public void setPeriodoDeVencimientoMembresia(Periodo periodoDeVencimientoMembresia) {
-    this.periodoDeVencimientoMembresia = periodoDeVencimientoMembresia;
+  public void setId(int id) {
+    this.id = id;
   }
-  
+
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
+  public Periodo getPeriodo() {
+    return periodo;
+  }
+
+  public void setPeriodo(Periodo periodo) {
+    this.periodo = periodo;
+  }
   
 }

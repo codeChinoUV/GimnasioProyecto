@@ -16,16 +16,18 @@ public class Periodo {
   private LocalDate fechaInicio;
   private LocalDate fechaFin;
   private Membresia membresia;
+  private Pago pago;
 
   public Periodo(LocalDate fechaInicio, LocalDate fechaFin) {
     this.fechaInicio = fechaInicio;
     this.fechaFin = fechaFin;
   }
 
-  public Periodo(LocalDate fechaInicio, LocalDate fechaFin, Membresia membresia) {
+  public Periodo(LocalDate fechaInicio, LocalDate fechaFin, Membresia membresia, Pago pago) {
     this.fechaInicio = fechaInicio;
     this.fechaFin = fechaFin;
     this.membresia = membresia;
+    this.pago = pago;
   }
 
   public Periodo() {
@@ -53,6 +55,14 @@ public class Periodo {
 
   public void setMembresia(Membresia membresia) {
     this.membresia = membresia;
+  }
+
+  public Pago getPago() {
+    return pago;
+  }
+
+  public void setPago(Pago pago) {
+    this.pago = pago;
   }
   
 }
