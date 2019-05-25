@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
@@ -88,11 +90,45 @@ public class ClienteDatos implements ClienteDAO {
       try {
         conexion.close();
       } catch (SQLException ex) {
-        System.out.println("SQLE: CerrarConexion-persistencia.ClienteDatos");
+        System.out.println("SQLE: CerrarConexion-persistencia.ClienteDatos.recuperar");
       }
     }
     return clientes;
 
   }
 
+  private boolean realizarConsultaGenerica(String query){
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    try{
+      consulta = conexion.createStatement();
+      consulta.execute(query);
+    }catch(SQLException ex){
+      System.out.println("SQLE: persistencia.ClientesDatos.consultaGenrica");
+      ex.printStackTrace();
+      return false;
+    }finally{
+      try {
+        conexion.close();
+      } catch (SQLException ex) {
+        System.out.println("SQLE: CerrarConexion-persistencia.ClienteDatos.consultaGenerica");
+      }
+    }
+    return true;
+  }
+  
+  @Override
+  public boolean actualizarCliente(Cliente cliente) {
+    if(cliente != null){
+      String query = "UPDATE cliente SET nombre ='" + cliente.getNombre() +"', paterno ='" +
+        cliente.getApellidoPaterno() + "', materno = '" + cliente.getApellidoPaterno() +"',"
+        + " telefono ='" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion()
+        + "', correo_electronico = '" + cliente.getCorreoElectronico() + "' WHERE id_cliente ="
+        + cliente.getId()+";";
+      return realizarConsultaGenerica(query);
+    }else{
+      return false;
+    }
+  }
+  
 }

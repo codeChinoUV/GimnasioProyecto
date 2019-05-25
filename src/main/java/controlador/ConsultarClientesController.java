@@ -7,6 +7,7 @@ package controlador;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.uv.gimnasio.MainApp;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import modelo.Cliente;
 import modelo.Membresia;
@@ -65,22 +68,24 @@ public class ConsultarClientesController implements Initializable {
   @FXML
   private JFXButton bSalir;
 
-  private void recuperarClientes() {
-    ClienteDatos clientesPersistencia = new ClienteDatos();
-    clientes = clientesPersistencia.recuperarClientes();
-    PagoDatos pagosPersistencia = new PagoDatos();
-    PeriodoDatos periodoPersistencia = new PeriodoDatos();
-    MembresiaDatos membresiaPersistencia = new MembresiaDatos();
-    for (Cliente cliente : clientes) {
-      List<Pago> pagos = pagosPersistencia.recuperarPagosSinVencer(cliente);
-      cliente.setPagos(pagos);
-      for (Pago pago : cliente.getPagos()) {
-        Periodo periodo = periodoPersistencia.recuperar(pago);
-        Membresia membresia = membresiaPersistencia.recuperar(periodo);
-        periodo.setMembresia(membresia);
-        pago.setPeriodo(periodo);
-      }
-    }
+  private MainApp aplicacionPrincipal;
+
+  private Stage stagePrincipal;
+
+  public MainApp getAplicacionPrincipal() {
+    return aplicacionPrincipal;
+  }
+
+  public void setAplicacionPrincipal(MainApp aplicacionPrincipal) {
+    this.aplicacionPrincipal = aplicacionPrincipal;
+  }
+
+  public Stage getStagePrincipal() {
+    return stagePrincipal;
+  }
+
+  public void setStagePrincipal(Stage stagePrincipal) {
+    this.stagePrincipal = stagePrincipal;
   }
 
   private void buscarCliente() {
@@ -96,9 +101,9 @@ public class ConsultarClientesController implements Initializable {
     MembresiaDatos membresiaPersistencia = new MembresiaDatos();
     for (Cliente cliente : clientes) {
       List<Pago> pagos = pagosPersistencia.recuperarPagosSinVencer(cliente);
-      if(pagos.isEmpty()){
+      if (pagos.isEmpty()) {
         System.out.println("Vacia");
-      }else{
+      } else {
         System.out.println("Contiene algo");
       }
       cliente.setPagos(pagos);
@@ -112,11 +117,11 @@ public class ConsultarClientesController implements Initializable {
   }
 
   @FXML
-  public void buscarBoton(){
+  public void buscarBoton() {
     buscarCliente();
     cargarTabla();
   }
-  
+
   private void cargarClientes() {
     clientesO = FXCollections.observableArrayList();
     if (clientes != null) {
@@ -149,6 +154,32 @@ public class ConsultarClientesController implements Initializable {
     cargarClientes();
   }
 
+  /**
+   * Muestra una ventana de dialogo para una alerta
+   * @param titulo Un Stirng que es el titulo de la ventana
+   * @param cabeceraMensaje Un String que es la cabecera del mensaje
+   * @param mensaje Un string que es el mensaje que se muestra 
+   */
+  private void mostrarAlerta(String titulo, String cabeceraMensaje, String mensaje) {
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle(titulo);
+    alert.setHeaderText(cabeceraMensaje);
+    alert.setContentText(mensaje);
+    alert.showAndWait();
+  }
+  
+  /**
+   * Cambia a la ventana modificar datos y le pasa el cliente que va a modificar
+   */
+  @FXML
+  public void cambiarAModificarDatos(){
+    if(tClientes.getSelectionModel().getSelectedItem() != null){
+      aplicacionPrincipal.cambiarVistaAModificarCliente(tClientes.getSelectionModel().getSelectedItem());
+    }else{
+      mostrarAlerta("Advertencia", "¿Que desea modificar?", "Debe de seleccionar un cliente de la tabla");
+    }
+  }
+  
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     System.out.println("Se inicializo");
