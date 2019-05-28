@@ -18,20 +18,23 @@ public class Promocion {
   private LocalDate fecha_inicio;
   private LocalDate fecha_fin;
   private double montoDescuento;
+  private String descripcion;
 
-  public Promocion(int id, String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, double montoDescuento) {
+  public Promocion(int id, String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, double montoDescuento, String descripcion) {
     this.id = id;
     this.nombre = nombre;
     this.fecha_inicio = fecha_inicio;
     this.fecha_fin = fecha_fin;
     this.montoDescuento = montoDescuento;
-  }
+    this.descripcion = descripcion;
+  } 
 
-  public Promocion(String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, double montoDescuento) {
+  public Promocion(String nombre, LocalDate fecha_inicio, LocalDate fecha_fin, double montoDescuento, String descripcion) {
     this.nombre = nombre;
     this.fecha_inicio = fecha_inicio;
     this.fecha_fin = fecha_fin;
     this.montoDescuento = montoDescuento;
+    this.descripcion = descripcion;
   }
   
   public Promocion() {
@@ -75,6 +78,13 @@ public class Promocion {
 
   public void setMontoDescuento(double montoDescuento) {
     this.montoDescuento = montoDescuento;
+  }
+  
+  public void setDescripcion(String descripcion){
+    this.descripcion = descripcion;
+  }
+  public String getDescripcion(){
+    return descripcion;
   }
   
 }
