@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import java.util.List;
 import modelo.Membresia;
 import modelo.Periodo;
 
@@ -14,4 +15,5 @@ import modelo.Periodo;
  */
 public interface MembresiaDAO {
   Membresia recuperar(Periodo periodo);
+  List<Membresia> recuperarMembresiasDisponibles();
 }
