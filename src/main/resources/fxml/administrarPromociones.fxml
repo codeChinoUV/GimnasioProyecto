@@ -15,6 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AdministrarPromocionesController">
    <children>
+      <AnchorPane layoutX="215.0" layoutY="11.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#caddee" height="369.0" layoutX="37.0" layoutY="91.0" opacity="0.39" stroke="WHITE" strokeType="INSIDE" width="245.0" />
       <JFXButton fx:id="btnGuardar" layoutX="55.0" layoutY="470.0" onAction="#guardarCambiosPromocion" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #82adf2;" text="Guardar" />
       <JFXButton fx:id="btnCancelar" layoutX="177.0" layoutY="470.0" onAction="#cancelarAccion" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #82adf2;" text="Cancelar" />

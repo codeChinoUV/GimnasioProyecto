@@ -21,6 +21,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
       this.stagePrincipal = stage;
+      stage.setResizable(false);
       mostrarVentanaPrincipal();  
     }
     
@@ -72,6 +73,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        
     }
 
 }
