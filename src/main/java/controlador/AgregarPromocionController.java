@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
+
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import persistencia.Conexion;
+import com.uv.gimnasio.MainApp;
+//import conexionMySql.ConexionSql;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -25,16 +22,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import modelo.Promocion;
-import com.uv.gimnasio.MainApp;
+import persistencia.Conexion;
 import persistencia.PromocionDatos;
+
 /**
  * FXML Controller class
  *
  * @author irvin
  */
-public class FXMLAgregarPromocionController implements Initializable {
+public class AgregarPromocionController implements Initializable {
     MainApp programaPrincipal;
-    Conexion controlador = new Conexion();
+   // Conexion controlador = new Conexion();
     PromocionDatos promo = new PromocionDatos();
     @FXML private JFXTextField tfRnombre;
     @FXML private JFXDatePicker dpRfechaInicio;
@@ -54,13 +52,13 @@ public class FXMLAgregarPromocionController implements Initializable {
   public void registrarPromocion(ActionEvent event){
       String nombre = tfRnombre.getText();
       int montoDescuento = Integer.parseInt(tfRdescuento.getText());
-      LocalDate fecha_inicio = dpRfechaInicio.getValue();
-      LocalDate fecha_fin = dpRfechaFin.getValue();
+      LocalDate fechaInicio = dpRfechaInicio.getValue();
+      LocalDate fechaFin = dpRfechaFin.getValue();
       String descripcion = taRdescripcion.getText();
       int idPromocion = Integer.parseInt(tfRid.getText());
       
-      if((nombre.equals("") != true) && ("".equals(montoDescuento) != true) && (fecha_inicio.equals("") != true) && (fecha_fin.equals("") != true) && (descripcion.equals("") != true) && ("".equals(idPromocion) != true)){
-          Promocion promocion = new Promocion(idPromocion,nombre,fecha_inicio,fecha_fin,montoDescuento,descripcion);
+      if((nombre.equals("") != true) && ("".equals(montoDescuento) != true) && (fechaInicio.equals("") != true) && (fechaFin.equals("") != true) && (descripcion.equals("") != true) && ("".equals(idPromocion) != true)){
+          Promocion promocion = new Promocion(idPromocion,nombre,fechaInicio,fechaFin,montoDescuento,descripcion);
           promo.nuevaPromocion(promocion);
           promocionest = FXCollections.observableArrayList();
           promocionest.add(promocion);
@@ -88,7 +86,7 @@ public class FXMLAgregarPromocionController implements Initializable {
       try {
             this.programaPrincipal.mostrarVentanaAdministrarPromocion();
         } catch (IOException ex) {
-            Logger.getLogger(FXMLAgregarPromocionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregarPromocionController.class.getName()).log(Level.SEVERE, null, ex);
             
         }
    }
@@ -99,6 +97,7 @@ public class FXMLAgregarPromocionController implements Initializable {
       btnRegresar.setGraphic((new ImageView (imagenFlecha)));
       
     }
+   
   /**
    * Initializes the controller class.
    */

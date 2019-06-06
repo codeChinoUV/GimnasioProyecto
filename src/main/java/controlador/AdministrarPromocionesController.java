@@ -36,7 +36,7 @@ import javax.swing.JOptionPane;
 import modelo.Promocion;
 import persistencia.PromocionDatos;
 
-public class FXMLController implements Initializable {
+public class AdministrarPromocionesController implements Initializable {
     MainApp programaPrincipal;
     @FXML ObservableList<Promocion> promocionest;
     @FXML private Label label;
@@ -82,7 +82,8 @@ public class FXMLController implements Initializable {
         String idPromocion = Integer.toString(p.getValue().getId());
         return new SimpleStringProperty(idPromocion);
       }
-    });
+    }
+        );
         List<Promocion> promocionesD = promo.getPromociones();
         promocionest = FXCollections.observableArrayList();
         
@@ -213,8 +214,17 @@ public class FXMLController implements Initializable {
             System.out.println("no");
         } catch (IOException ex) {
           ex.printStackTrace();
-            Logger.getLogger(FXMLAgregarPromocionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AgregarPromocionController.class.getName()).log(Level.SEVERE, null, ex);
         }
      
     }
+    
+      public void salir(ActionEvent event) throws Exception{
+      try {
+            this.programaPrincipal.mostrarVentanaPrincipal();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+  }
 }

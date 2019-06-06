@@ -37,11 +37,11 @@ public class PromocionDatos implements PromocionDAO{
         try {
             s = conn.createStatement();
             rs = s.executeQuery(sQuery);
-           // System.out.println("Ejecutó la consulta");
+           System.out.println("Ejecutó la consulta");
             while (rs != null && rs.next()) {
                 Promocion prom = new Promocion();
                 prom.setNombre(rs.getString("nombre"));
-                prom.setMontoDescuento(rs.getInt("monto_Descuento"));
+                prom.setMontoDescuento(rs.getInt("monto_descuento"));
                 Date fechaInicio = rs.getDate("fecha_Inicio");
                 LocalDate fechaInicioL = LocalDate.of(fechaInicio.getYear() + 1900, fechaInicio.getMonth() + 1, fechaInicio.getDate());
                 prom.setFecha_inicio(fechaInicioL);
@@ -136,5 +136,5 @@ public class PromocionDatos implements PromocionDAO{
       }
       return true;
     }
-    
+ 
 }
