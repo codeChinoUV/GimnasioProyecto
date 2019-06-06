@@ -62,8 +62,7 @@ public class ClienteDatos implements ClienteDAO {
   @Override
   public List<Cliente> buscarClientes(String nombre) {
     //String nombreRegular = "*"+nombre+"*"; 
-    String consultaq = "Select CONCAT(nombre, ' ', paterno, ' ', materno)"
-        + " as nombre from cliente where nombre rlike + '" + nombre + "';";
+    String consultaq = "Select * from cliente where CONCAT(nombre, ' ', paterno, ' ', materno) rlike + '" + nombre + "';";
     List<Cliente> clientes = new ArrayList<>();
     Connection conexion = new Conexion().getCon();
     Statement consulta;
@@ -73,13 +72,13 @@ public class ClienteDatos implements ClienteDAO {
       resultados = consulta.executeQuery(consultaq);
       while (resultados != null && resultados.next()) {
         Cliente cliente = new Cliente();
-        cliente.setId(resultados.getInt("id_cliente"));
-        cliente.setNombre(resultados.getString("nombre"));
-        cliente.setApellidoPaterno(resultados.getString("paterno"));
-        cliente.setApellidoMaterno(resultados.getString("materno"));
-        cliente.setTelefono(resultados.getString("telefono"));
-        cliente.setDireccion(resultados.getString("direccion"));
-        cliente.setCorreoElectronico(resultados.getString("correo_electronico"));
+        cliente.setId(resultados.getInt(1));
+        cliente.setNombre(resultados.getString(2));
+        cliente.setApellidoPaterno(resultados.getString(3));
+        cliente.setApellidoMaterno(resultados.getString(4));
+        cliente.setTelefono(resultados.getString(5));
+        cliente.setDireccion(resultados.getString(6));
+        cliente.setCorreoElectronico(resultados.getString(7));
         clientes.add(cliente);
       }
     } catch (SQLException errorSQL) {
