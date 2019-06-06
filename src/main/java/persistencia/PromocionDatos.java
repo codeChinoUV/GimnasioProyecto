@@ -75,7 +75,7 @@ public class PromocionDatos implements PromocionDAO{
         conexion = new Conexion().getCon();
         Statement consulta;
         System.out.println("Editar promocion de la BD");
-        String query = "UPDATE promociones SET nombre = '" + promocion.getNombre() + "', monto_descuento = '"
+        String query = "UPDATE promocion SET nombre = '" + promocion.getNombre() + "', monto_descuento = '"
                 + promocion.getMontoDescuento() +"', fecha_inicio = '" + promocion.getFecha_inicio() + "' , fecha_fin = '" +promocion.getFecha_fin()+ "',descripcion ='" +promocion.getDescripcion()+
                 "' WHERE id_promocion = '" + promocion.getId() + "';";
         try {
@@ -120,12 +120,15 @@ public class PromocionDatos implements PromocionDAO{
       Connection conexion;
       conexion = new Conexion().getCon();
       Statement consulta;
-      String query = "INSERT INTO promociones(nombre,montoDescuento,fecha_inicio,fecha_fin,descripcion,id_promocion) VALUES ('" + promocion.getNombre() + "','" +promocion.getMontoDescuento()+ "','" +promocion.getFecha_inicio()+ "','" +promocion.getFecha_fin()+ "','" +promocion.getDescripcion()+ "','" +promocion.getId()+"');";
-     
+      String query = "INSERT INTO promocion(nombre,monto_descuento,fecha_inicio,fecha_fin,descripcion,id_promocion) VALUES ('" + promocion.getNombre() + "','" +promocion.getMontoDescuento()+ "','" +promocion.getFecha_inicio()+ "','" +promocion.getFecha_fin()+ "','" +promocion.getDescripcion()+ "','" +promocion.getId()+"');";
+      System.out.println(query);
       try{
         consulta = conexion.createStatement();
-        consulta.executeUpdate(query);
+        System.out.println("conexion");
+        consulta.execute(query);
+        System.out.println("kakaka");
       }catch(SQLException errorSQL){
+        errorSQL.printStackTrace();
         return false;
       }finally{
         try{

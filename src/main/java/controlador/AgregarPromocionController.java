@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.uv.gimnasio.MainApp;
-//import conexionMySql.ConexionSql;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -59,7 +58,7 @@ public class AgregarPromocionController implements Initializable {
       
       if((nombre.equals("") != true) && ("".equals(montoDescuento) != true) && (fechaInicio.equals("") != true) && (fechaFin.equals("") != true) && (descripcion.equals("") != true) && ("".equals(idPromocion) != true)){
           Promocion promocion = new Promocion(idPromocion,nombre,fechaInicio,fechaFin,montoDescuento,descripcion);
-          promo.nuevaPromocion(promocion);
+          System.out.println(promo.nuevaPromocion(promocion));
           promocionest = FXCollections.observableArrayList();
           promocionest.add(promocion);
           JOptionPane.showMessageDialog(null, "Promocion agregada exitosamente");

@@ -9,7 +9,6 @@ import com.uv.gimnasio.MainApp;
 import persistencia.Conexion;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,7 +21,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,7 +28,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
 import modelo.Promocion;
@@ -134,7 +131,7 @@ public class AdministrarPromocionesController implements Initializable {
     private void guardarCambiosPromocion(ActionEvent event) {
         tablaPromociones.setDisable(false);
         String nombre = tfnombre.getText();
-        double montoDescuento = Integer.parseInt(tfDescuento.getText());
+        double montoDescuento = Double.parseDouble(tfDescuento.getText());
         LocalDate fechaInicio = dpFechaInicio.getValue();
         LocalDate fechaFin = dpFechaFin.getValue();
         String descripcion = taDescripcion.getText();
@@ -209,9 +206,7 @@ public class AdministrarPromocionesController implements Initializable {
     @FXML
     public void ventanaRegistro(ActionEvent event){
         try {
-          System.out.println("si");
             programaPrincipal.mostrarVentanaRegistroPromocion();
-            System.out.println("no");
         } catch (IOException ex) {
           ex.printStackTrace();
             Logger.getLogger(AgregarPromocionController.class.getName()).log(Level.SEVERE, null, ex);
