@@ -109,4 +109,37 @@ public class ConsultarProblemaController {
       }
       tProblema.setItems(problemas);
     }
+  private void buscarProblema() {
+    String problemaABuscar = bBuscar.getText();
+    ProblemaDatos problemaPersistencia = new ProblemaDatos();
+    if (!problemaABuscar.equals("")) {
+      clientes = problemaPersistencia.buscarProblemas(problemaABuscar);
+    } else {
+      clientes = clientesPersistencia.recuperarClientes();
+    }
+    PagoDatos pagosPersistencia = new PagoDatos();
+    PeriodoDatos periodoPersistencia = new PeriodoDatos();
+    MembresiaDatos membresiaPersistencia = new MembresiaDatos();
+    for (Cliente cliente : clientes) {
+      List<Pago> pagos = pagosPersistencia.recuperarPagosSinVencer(cliente);
+      if(pagos.isEmpty()){
+        System.out.println("Vacia");
+      }else{
+        System.out.println("Contiene algo");
+      }
+      cliente.setPagos(pagos);
+      for (Pago pago : cliente.getPagos()) {
+        Periodo periodo = periodoPersistencia.recuperar(pago);
+        Membresia membresia = membresiaPersistencia.recuperar(periodo);
+        periodo.setMembresia(membresia);
+        pago.setPeriodo(periodo);
+      }
+    }
+  }
+
+  @FXML
+  public void buscarBoton(){
+    buscarCliente();
+    cargarTabla();
+  }
 }
