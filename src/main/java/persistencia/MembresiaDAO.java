@@ -15,5 +15,9 @@ import modelo.Periodo;
  */
 public interface MembresiaDAO {
   Membresia recuperar(Periodo periodo);
+<<<<<<< HEAD
   List<Membresia> recuperarMembresias();
+=======
+  List<Membresia> recuperarMembresiasDisponibles();
+>>>>>>> consultarProblema
 }

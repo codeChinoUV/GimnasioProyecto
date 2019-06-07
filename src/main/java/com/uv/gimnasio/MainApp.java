@@ -83,6 +83,7 @@ public class MainApp extends Application {
 
 public class MainApp extends Application {
 
+<<<<<<< HEAD
    private AnchorPane rootPane;
     private Stage stagePrincipal;
     
@@ -94,6 +95,18 @@ public class MainApp extends Application {
     }catch(IOException e){
       e.printStackTrace();
       System.out.println("MainApp: IOEX: start");
+=======
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ConsultarProblema.fxml"));
+        
+        Scene scene = new Scene(root);
+        //scene.getStylesheets().add("/styles/consultarclientes.css");
+        
+        stage.setTitle("Consultar problemas");
+        stage.setScene(scene);
+        stage.show();
+>>>>>>> consultarProblema
     }
   }
 
