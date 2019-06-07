@@ -19,8 +19,8 @@ public class Conexion {
     private Connection conexion;
     private String host = "localhost";
     private String db = "gimnasio";
-    private String username = "miguel";
-    private String password = "joseMiguel13";
+    private String username = "root";
+    private String password = "haloeslaneta2";
     private String url = "jdbc:mysql://"+host+"/"+db+"?useSSL=false";
     String error;
     

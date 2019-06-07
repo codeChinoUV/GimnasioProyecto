@@ -57,6 +57,11 @@ public class ClienteDatos implements ClienteDAO {
     return clientes;
   }
 
+  /**
+   * 
+   * @param nombre
+   * @return 
+   */
   @Override
   public List<Cliente> buscarClientes(String nombre) {
     //String nombreRegular = "*"+nombre+"*"; 

@@ -7,15 +7,20 @@ package controlador;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.uv.gimnasio.MainApp;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -64,6 +69,8 @@ public class ConsultarClientesController implements Initializable {
   private JFXButton bModificarDatos;
   @FXML
   private JFXButton bSalir;
+  MainApp programaPrincipal;
+  
 
   private void recuperarClientes() {
     ClienteDatos clientesPersistencia = new ClienteDatos();
@@ -153,5 +160,17 @@ public class ConsultarClientesController implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     System.out.println("Se inicializo");
     cargarTabla();
+  }
+  
+  public void setProgramaPrincipal(MainApp programaPrincipal){
+    this.programaPrincipal = programaPrincipal;
+  }
+  public void salir(ActionEvent event) throws Exception{
+      try {
+            this.programaPrincipal.mostrarVentanaPrincipal();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
   }
 }
