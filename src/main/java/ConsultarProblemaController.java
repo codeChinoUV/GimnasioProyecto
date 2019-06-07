@@ -82,10 +82,11 @@ public class ConsultarProblemaController implements Initializable{
         tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         recuperarProblemas();
-        /*recuperarClientes();    
+        recuperarClientes();    
         cargarClientes();
-        cargarProblemas();*/
+        cargarProblemas();
         tProblema.setItems(problemasO);
+        
     }
     
     private void cargarClientes() {
@@ -99,6 +100,8 @@ public class ConsultarProblemaController implements Initializable{
     }
     
     private void cargarProblemas() {
+      ProblemaDAO persistenciaProblema = new ProblemaDatos();
+      problemas = persistenciaProblema.recuperarProblemas();
       problemasO = FXCollections.observableArrayList();
       if (problemas != null) {
         for (Problema problema : problemas) {
