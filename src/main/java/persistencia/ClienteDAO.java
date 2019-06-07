@@ -15,4 +15,6 @@ import modelo.Cliente;
 public interface ClienteDAO {
   List<Cliente> recuperarClientes();
   List<Cliente> buscarClientes(String nombre);
+  boolean almacenarCliente(Cliente cliente);
+  int obtenerUltimoIdInsertado();
 }

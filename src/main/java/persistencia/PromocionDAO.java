@@ -6,14 +6,14 @@
 package persistencia;
 
 import java.util.List;
-import modelo.Membresia;
-import modelo.Periodo;
+import modelo.Pago;
+import modelo.Promocion;
 
 /**
  *
  * @author Miguel
  */
-public interface MembresiaDAO {
-  Membresia recuperar(Periodo periodo);
-  List<Membresia> recuperarMembresias();
+public interface PromocionDAO {
+ List<Promocion> recuperarPromocionesVigentes(); 
+ boolean agregarPromocionAplicada(Pago pago, Promocion promocion);
 }
