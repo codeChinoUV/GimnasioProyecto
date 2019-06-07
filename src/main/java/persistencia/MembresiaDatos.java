@@ -53,11 +53,8 @@ public class MembresiaDatos implements MembresiaDAO {
     return membresia;
   }
   
-<<<<<<< HEAD
-  public List<Membresia> recuperarMembresias(){
-=======
+
   public List<Membresia> recuperarMembresiasDisponibles(){
->>>>>>> consultarProblema
     List<Membresia> membresias = new ArrayList<>();
     Connection conexion = new Conexion().getCon();
     Statement consulta;
@@ -67,11 +64,7 @@ public class MembresiaDatos implements MembresiaDAO {
       consulta = conexion.createStatement();
       resultados = consulta.executeQuery(query);
       while (resultados != null && resultados.next()) {
-<<<<<<< HEAD
         Membresia membresia = new Membresia();
-=======
-          Membresia membresia = new Membresia();
->>>>>>> consultarProblema
         membresia.setId(resultados.getInt("id_membresia"));
         membresia.setNombre(resultados.getString("nombre"));
         membresia.setDescripcion(resultados.getString("descripcion"));

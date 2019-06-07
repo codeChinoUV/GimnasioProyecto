@@ -8,6 +8,7 @@ package controlador;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.uv.gimnasio.MainApp;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -261,7 +262,12 @@ public class ModificarDatosController implements Initializable {
    */
   @FXML
   public void cancelar(){
-    aplicacionPrincipal.cambiarVistaAConsultarCliente();
+    try{
+      aplicacionPrincipal.mostrarVentanaConsultarClientes();
+    }catch(IOException ex){
+      System.out.println("IOEX: Modificardatos.cancelar");
+    }
+    
   }
   
   /**

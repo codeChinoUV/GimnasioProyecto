@@ -58,16 +58,7 @@ public class ClienteDatos implements ClienteDAO {
     }
     return clientes;
   }
-<<<<<<< HEAD
 
-  /**
-   * 
-   * @param nombre
-   * @return 
-   */
-=======
-  
->>>>>>> consultarProblema
   @Override
   public List<Cliente> buscarClientes(String nombre) {
     //String nombreRegular = "*"+nombre+"*"; 
@@ -105,19 +96,17 @@ public class ClienteDatos implements ClienteDAO {
 
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  private boolean realizarConsultaGenerica(String query){
+  private boolean realizarConsultaGenerica(String query) {
     Connection conexion = new Conexion().getCon();
     Statement consulta;
-    try{
+    try {
       consulta = conexion.createStatement();
       consulta.execute(query);
-    }catch(SQLException ex){
+    } catch (SQLException ex) {
       System.out.println("SQLE: persistencia.ClientesDatos.consultaGenrica");
       ex.printStackTrace();
       return false;
-    }finally{
+    } finally {
       try {
         conexion.close();
       } catch (SQLException ex) {
@@ -126,21 +115,21 @@ public class ClienteDatos implements ClienteDAO {
     }
     return true;
   }
-  
+
   @Override
   public boolean actualizarCliente(Cliente cliente) {
-    if(cliente != null){
-      String query = "UPDATE cliente SET nombre ='" + cliente.getNombre() +"', paterno ='" +
-        cliente.getApellidoPaterno() + "', materno = '" + cliente.getApellidoPaterno() +"',"
-        + " telefono ='" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion()
-        + "', correo_electronico = '" + cliente.getCorreoElectronico() + "' WHERE id_cliente ="
-        + cliente.getId()+";";
+    if (cliente != null) {
+      String query = "UPDATE cliente SET nombre ='" + cliente.getNombre() + "', paterno ='"
+          + cliente.getApellidoPaterno() + "', materno = '" + cliente.getApellidoPaterno() + "',"
+          + " telefono ='" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion()
+          + "', correo_electronico = '" + cliente.getCorreoElectronico() + "' WHERE id_cliente ="
+          + cliente.getId() + ";";
       return realizarConsultaGenerica(query);
-    }else{
+    } else {
       return false;
     }
   }
-=======
+
   private void consultaGenerica(String query) throws SQLException {
     Connection conexion = new Conexion().getCon();
     Statement consulta;
@@ -151,13 +140,13 @@ public class ClienteDatos implements ClienteDAO {
   @Override
   public boolean almacenarCliente(Cliente cliente) {
     String query = "INSERT INTO cliente(nombre,paterno,materno,telefono,direccion,correo_electronico)"
-        + " VALUES ('" + cliente.getNombre() + "','" + cliente.getApellidoPaterno() + "','" 
+        + " VALUES ('" + cliente.getNombre() + "','" + cliente.getApellidoPaterno() + "','"
         + cliente.getApellidoMaterno() + "','" + cliente.getTelefono() + "','" + cliente.getDireccion()
         + "','" + cliente.getCorreoElectronico() + "');";
-    try{
+    try {
       consultaGenerica(query);
       return true;
-    }catch(SQLException ex){
+    } catch (SQLException ex) {
       System.out.println("SQLE: Agregar cliente-perisistencia.almacenarCliente");
       return false;
     }
@@ -169,21 +158,18 @@ public class ClienteDatos implements ClienteDAO {
     Connection conexion = new Conexion().getCon();
     Statement consulta;
     ResultSet resultados;
-    try{
+    try {
       consulta = conexion.createStatement();
       resultados = consulta.executeQuery(query);
-      while(resultados != null && resultados.next()){
+      while (resultados != null && resultados.next()) {
         return resultados.getInt("ultimo");
       }
-    }catch(SQLException ex){
+    } catch (SQLException ex) {
       return -1;
     }
     return -1;
   }
 
-  
->>>>>>> Bruno
-=======
   public Cliente recuperarClienteEspecifico(Cliente clienteBuscar) {
     Cliente cliente = new Cliente();
     Connection conexion = new Conexion().getCon();
@@ -194,7 +180,7 @@ public class ClienteDatos implements ClienteDAO {
       consulta = conexion.createStatement();
       resultados = consulta.executeQuery(query);
       while (resultados != null && resultados.next()) {
-        
+
         cliente.setId(resultados.getInt("id_cliente"));
         cliente.setNombre(resultados.getString("nombre"));
         cliente.setApellidoPaterno(resultados.getString("paterno"));
@@ -216,6 +202,5 @@ public class ClienteDatos implements ClienteDAO {
     }
     return cliente;
   }
->>>>>>> consultarProblema
   
 }

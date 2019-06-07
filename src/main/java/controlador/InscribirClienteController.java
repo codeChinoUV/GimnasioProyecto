@@ -116,7 +116,7 @@ public class InscribirClienteController implements Initializable {
   private void recuperarMembresias() {
     membresiasDisponibles = FXCollections.observableArrayList();
     MembresiaDAO persistenciaMembresias = new MembresiaDatos();
-    List<Membresia> membresiasRecuperadas = persistenciaMembresias.recuperarMembresias();
+    List<Membresia> membresiasRecuperadas = persistenciaMembresias.recuperarMembresiasDisponibles();
     for (Membresia membresia : membresiasRecuperadas) {
       membresiasDisponibles.add(membresia);
     }

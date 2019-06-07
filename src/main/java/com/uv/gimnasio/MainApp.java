@@ -1,15 +1,11 @@
 package com.uv.gimnasio;
 
-<<<<<<< HEAD
 import controlador.AdministrarPromocionesController;
 import controlador.AgregarPromocionController;
 import controlador.ConsultarClientesController;
-
 import controlador.VentanaPrincipalController;
 import controlador.ModificarDatosController;
-=======
 import controlador.InscribirClienteController;
->>>>>>> Bruno
 import java.io.IOException;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -17,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import modelo.Cliente;
 
 public class MainApp extends Application {
@@ -32,6 +27,19 @@ public class MainApp extends Application {
     mostrarVentanaPrincipal();
   }
 
+  public void mostrarVentanaInscribirCliente() throws IOException {
+    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/InscribirCliente.fxml"));
+    rootPane = (AnchorPane) loader.load();
+    Scene scene = new Scene(rootPane);
+    //scene.getStylesheets().add("/styles/Styles.css");
+    stagePrincipal.setTitle("Inscribir cliente");
+    stagePrincipal.setScene(scene);
+    InscribirClienteController controlador = loader.getController();
+    controlador.setStagePrincipal(stagePrincipal);
+    controlador.setAplicacionPrincipal(this);
+    stagePrincipal.show();
+  }
+  
   public void mostrarVentanaPrincipal() throws Exception {
     FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/VentanaPrincipal.fxml"));
     rootPane = (AnchorPane) loader.load();
@@ -40,6 +48,21 @@ public class MainApp extends Application {
     stagePrincipal.setScene(scene);
     VentanaPrincipalController controller = loader.getController();
     controller.setProgramaPrincipal(this);
+    stagePrincipal.show();
+    stagePrincipal.centerOnScreen();
+  }
+  
+  public void mostrarModificarCliente(Cliente cleinte) throws Exception {
+    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/ModificarDatos.fxml"));
+    rootPane = (AnchorPane) loader.load();
+    Scene scene = new Scene(rootPane);
+    stagePrincipal.setTitle("Ventana Principal");
+    stagePrincipal.setScene(scene);
+    ModificarDatosController controller = loader.getController();
+    controller.setAplicacionPrincipal(this);
+    controller.setStagePrincipal(stagePrincipal);
+    controller.setClienteAModificar(cleinte);
+    controller.inicializar();
     stagePrincipal.show();
     stagePrincipal.centerOnScreen();
   }
@@ -52,6 +75,8 @@ public class MainApp extends Application {
     stagePrincipal.setScene(scene);
     ConsultarClientesController controller = loader.getController();
     controller.setProgramaPrincipal(this);
+    controller.setAplicacionPrincipal(this);
+    controller.setStagePrincipal(stagePrincipal);
     stagePrincipal.show();
   }
 
@@ -79,58 +104,6 @@ public class MainApp extends Application {
     stagePrincipal.centerOnScreen();
   }
 
-=======
-
-public class MainApp extends Application {
-
-<<<<<<< HEAD
-   private AnchorPane rootPane;
-    private Stage stagePrincipal;
-    
-  @Override
-  public void start(Stage stage) throws Exception {
-    stagePrincipal = stage;
-    try{
-      cargarInscribirCliente();
-    }catch(IOException e){
-      e.printStackTrace();
-      System.out.println("MainApp: IOEX: start");
-=======
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ConsultarProblema.fxml"));
-        
-        Scene scene = new Scene(root);
-        //scene.getStylesheets().add("/styles/consultarclientes.css");
-        
-        stage.setTitle("Consultar problemas");
-        stage.setScene(scene);
-        stage.show();
->>>>>>> consultarProblema
-    }
-  }
-
-  public void cargarInscribirCliente() throws IOException {
-    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/InscribirCliente.fxml"));
-    rootPane = (AnchorPane) loader.load();
-    Scene scene = new Scene(rootPane);
-    //scene.getStylesheets().add("/styles/Styles.css");
-    stagePrincipal.setTitle("Agenda");
-    stagePrincipal.setScene(scene);
-    InscribirClienteController controlador = loader.getController();
-    controlador.setStagePrincipal(stagePrincipal);
-    controlador.setAplicacionPrincipal(this);
-    stagePrincipal.show();
-  }
-
-  /**
-   * The main() method is ignored in correctly deployed JavaFX application. main() serves only as
-   * fallback in case the application can not be launched through deployment artifacts, e.g., in
-   * IDEs with limited FX support. NetBeans ignores main().
-   *
-   * @param args the command line arguments
-   */
->>>>>>> Bruno
   public static void main(String[] args) {
     launch(args);
   }

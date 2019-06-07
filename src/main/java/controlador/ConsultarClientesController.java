@@ -180,9 +180,18 @@ public class ConsultarClientesController implements Initializable {
   @FXML
   public void cambiarAModificarDatos(){
     if(tClientes.getSelectionModel().getSelectedItem() != null){
-      aplicacionPrincipal.cambiarVistaAModificarCliente(tClientes.getSelectionModel().getSelectedItem());
+      try {
+        if(aplicacionPrincipal != null){
+          aplicacionPrincipal.mostrarModificarCliente(tClientes.getSelectionModel().getSelectedItem());
+        }else{
+          System.out.println("Esta vacio vez");
+        }
+        
+      } catch (Exception ex) {
+        Logger.getLogger(ConsultarClientesController.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }else{
-      mostrarAlerta("Advertencia", "¿Que desea modificar?", "Debe de seleccionar un cliente de la tabla");
+      mostrarAlerta("Advertencia", "Â¿Que desea modificar?", "Debe de seleccionar un cliente de la tabla");
     }
   }
   
