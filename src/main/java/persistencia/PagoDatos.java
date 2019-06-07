@@ -91,4 +91,44 @@ public class PagoDatos implements PagoDAO{
     }
     return pagos;
   }
+
+    private void consultaGenerica(String query) throws SQLException {
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    consulta = conexion.createStatement();
+    consulta.execute(query);
+  }
+  
+  @Override
+  public boolean almacenar(Pago pago) {
+    System.out.println("BD:" + pago.getFecha());
+    String query = "INSERT INTO pago (monto,fecha_pago,id_cliente) VALUES(" + pago.getMonto() + ",'" 
+        + pago.getFecha() + "'," + pago.getCliente().getId() + ");";
+    try{
+      consultaGenerica(query);
+      return true;
+    }catch(SQLException e){
+      e.printStackTrace();
+      System.out.println("SQLE: almacenarPago-PagoDatos.almacenar");
+      return false;
+    }
+  }
+
+  @Override
+  public int obtenerUltimoIdInsertado() {
+   String query = "select MAX(id_pago) as ultimo from pago;";
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    ResultSet resultados;
+    try{
+      consulta = conexion.createStatement();
+      resultados = consulta.executeQuery(query);
+      while(resultados != null && resultados.next()){
+        return resultados.getInt("ultimo");
+      }
+    }catch(SQLException ex){
+      return -1;
+    }
+    return -1;
+  }
 }

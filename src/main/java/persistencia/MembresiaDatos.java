@@ -52,4 +52,35 @@ public class MembresiaDatos implements MembresiaDAO {
     }
     return membresia;
   }
+  
+  public List<Membresia> recuperarMembresias(){
+    List<Membresia> membresias = new ArrayList<>();
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    ResultSet resultados;
+    String query = "SELECT * FROM membresia;";
+    try {
+      consulta = conexion.createStatement();
+      resultados = consulta.executeQuery(query);
+      while (resultados != null && resultados.next()) {
+        Membresia membresia = new Membresia();
+        membresia.setId(resultados.getInt("id_membresia"));
+        membresia.setNombre(resultados.getString("nombre"));
+        membresia.setDescripcion(resultados.getString("descripcion"));
+        membresia.setPrecio(resultados.getFloat("precio"));
+        membresias.add(membresia);
+      }
+    } catch (SQLException errorSQL) {
+      JOptionPane.showMessageDialog(null, "Error obteniendo datos");
+      errorSQL.printStackTrace();
+      return null;
+    } finally {
+      try {
+        conexion.close();
+      } catch (SQLException ex) {
+        System.out.println("Error en de la base de datos");
+      }
+    }
+    return membresias;
+  }
 }

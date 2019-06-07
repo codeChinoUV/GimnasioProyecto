@@ -5,13 +5,19 @@
  */
 package persistencia;
 
+<<<<<<< HEAD
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+=======
+import java.util.List;
+import modelo.Pago;
+>>>>>>> Bruno
 import modelo.Promocion;
 
 /**
  *
+<<<<<<< HEAD
  * @author irvin
  */
 public interface PromocionDAO {
@@ -20,4 +26,11 @@ public interface PromocionDAO {
    public boolean editarPromociones(Promocion promocion);
    public boolean nuevaPromocion(Promocion promocion);
    
+=======
+ * @author Miguel
+ */
+public interface PromocionDAO {
+ List<Promocion> recuperarPromocionesVigentes(); 
+ boolean agregarPromocionAplicada(Pago pago, Promocion promocion);
+>>>>>>> Bruno
 }

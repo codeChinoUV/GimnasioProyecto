@@ -13,6 +13,8 @@ import modelo.Pago;
  *
  * @author Miguel
  */
-interface PagoDAO {
+public interface PagoDAO {
   List<Pago> recuperar(Cliente cliente);
+  boolean almacenar(Pago pago);
+  int obtenerUltimoIdInsertado();
 }

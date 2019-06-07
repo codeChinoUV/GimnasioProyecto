@@ -5,15 +5,14 @@
  */
 package persistencia;
 
-import java.util.List;
-import modelo.Membresia;
+import modelo.Pago;
 import modelo.Periodo;
 
 /**
  *
  * @author Miguel
  */
-public interface MembresiaDAO {
-  Membresia recuperar(Periodo periodo);
-  List<Membresia> recuperarMembresias();
+public interface PeriodoDAO {
+  Periodo recuperar(Pago pago);
+  boolean almacenarPeriodo(Periodo perido);
 }

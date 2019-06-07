@@ -101,6 +101,7 @@ public class ClienteDatos implements ClienteDAO {
 
   }
 
+<<<<<<< HEAD
   private boolean realizarConsultaGenerica(String query){
     Connection conexion = new Conexion().getCon();
     Statement consulta;
@@ -134,5 +135,48 @@ public class ClienteDatos implements ClienteDAO {
       return false;
     }
   }
+=======
+  private void consultaGenerica(String query) throws SQLException {
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    consulta = conexion.createStatement();
+    consulta.execute(query);
+  }
+
+  @Override
+  public boolean almacenarCliente(Cliente cliente) {
+    String query = "INSERT INTO cliente(nombre,paterno,materno,telefono,direccion,correo_electronico)"
+        + " VALUES ('" + cliente.getNombre() + "','" + cliente.getApellidoPaterno() + "','" 
+        + cliente.getApellidoMaterno() + "','" + cliente.getTelefono() + "','" + cliente.getDireccion()
+        + "','" + cliente.getCorreoElectronico() + "');";
+    try{
+      consultaGenerica(query);
+      return true;
+    }catch(SQLException ex){
+      System.out.println("SQLE: Agregar cliente-perisistencia.almacenarCliente");
+      return false;
+    }
+  }
+
+  @Override
+  public int obtenerUltimoIdInsertado() {
+    String query = "select MAX(id_cliente) as ultimo from cliente;";
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    ResultSet resultados;
+    try{
+      consulta = conexion.createStatement();
+      resultados = consulta.executeQuery(query);
+      while(resultados != null && resultados.next()){
+        return resultados.getInt("ultimo");
+      }
+    }catch(SQLException ex){
+      return -1;
+    }
+    return -1;
+  }
+
+  
+>>>>>>> Bruno
   
 }

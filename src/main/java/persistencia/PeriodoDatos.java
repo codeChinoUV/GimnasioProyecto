@@ -22,7 +22,7 @@ import modelo.Periodo;
  *
  * @author Miguel
  */
-public class PeriodoDatos implements periodoDAO{
+public class PeriodoDatos implements PeriodoDAO{
 
   @Override
   public Periodo recuperar(Pago pago) {
@@ -59,5 +59,27 @@ public class PeriodoDatos implements periodoDAO{
       }
     }
     return periodo;
+  }
+
+  private void consultaGenerica(String query) throws SQLException {
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    consulta = conexion.createStatement();
+    consulta.execute(query);
+  }
+  
+  @Override
+  public boolean almacenarPeriodo(Periodo periodo) {
+    String query = "INSERT INTO periodo VALUES('" + periodo.getFechaInicio() + "','" 
+        + periodo.getFechaFin() + "'," + periodo.getMembresia().getId() + ","
+        + periodo.getPago().getId() + ");";
+    try{
+      consultaGenerica(query);
+      return true;
+    }catch(SQLException e){
+      e.printStackTrace();
+      System.out.println("SQLE: almacenarPeriodo-PeriodoDatos.almacenarPeriodo");
+      return false;
+    }
   }
 }
