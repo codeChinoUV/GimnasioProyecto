@@ -15,12 +15,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -50,7 +53,7 @@ public class InscribirClienteController implements Initializable {
   private Stage stagePrincipal = null;
   private MainApp aplicacionPrincipal = null;
   private Promocion promocionSeleccionadas = null;
-
+  ConsultarClientesController controller = new ConsultarClientesController();
   @FXML
   private JFXTextField tfNombre;
   @FXML
@@ -126,6 +129,7 @@ public class InscribirClienteController implements Initializable {
    * Carga la tabla de membresias
    */
   private void cargarTabla() {
+    tMembresia.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
     tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
     tcPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
@@ -183,8 +187,9 @@ public class InscribirClienteController implements Initializable {
   private String resumenDescuento() {
     String promociones = "\nPromociones:\n";
     if (promocionSeleccionadas != null) {
-      promociones += "\t" + promocionSeleccionadas.getNombre() + ":\t%"
-          + promocionSeleccionadas.getMontoDescuento() + "\n";
+      double descuento = promocionSeleccionadas.getMontoDescuento() * 100;
+      promociones += "\t" + promocionSeleccionadas.getNombre() + ":\t"
+          + descuento + "%\n";
     }
     return promociones;
   }
@@ -247,7 +252,17 @@ public class InscribirClienteController implements Initializable {
   }
 
   @FXML
-  public void cancelar() {
+  public void cerrar() {
+    try {
+      getAplicacionPrincipal().mostrarVentanaPrincipal();
+    } catch (Exception ex) {
+      Logger.getLogger(InscribirClienteController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+  @FXML
+  public void establecerVacio() {
     establecerCamposNormales();
     tfNombre.setText("");
     tfPaterno.setText("");
@@ -276,10 +291,11 @@ public class InscribirClienteController implements Initializable {
         mostrarInformacionDescripcion(resumenDeInscripcion);
         bloquearCamposYTabla();
       } else {
-        //Mensaje de advertencia, dede seleccionar almenos una membresia
+        controller.mostrarAlerta("Advertencia", "Sea ciudadoso", "Debe de seleccionar una membresia por lo menos");
       }
     } else {
-
+      controller.mostrarAlerta("Advertencia", "Sea ciudadoso", "Debe de llenar por lo menos los datos del cliente"
+          + " nombre, paterno y direccion");
     }
   }
 
@@ -295,9 +311,9 @@ public class InscribirClienteController implements Initializable {
       Pago pago = new Pago();
       pago.setCliente(cliente);
       double monto = 0;
-      if(promocionSeleccionadas != null){
+      if (promocionSeleccionadas != null) {
         monto = membresia.getPrecio() * promocionSeleccionadas.getMontoDescuento();
-      }else{
+      } else {
         monto = membresia.getPrecio();
       }
       pago.setMonto(monto);
@@ -316,9 +332,10 @@ public class InscribirClienteController implements Initializable {
       periodo.setMembresia(membresia);
       PeriodoDAO persistenciaPeriodo = new PeriodoDatos();
       persistenciaPeriodo.almacenarPeriodo(periodo);
-      
+
     }
-    //Mensaje confirmacion
-      cancelar();
+    controller.mostrarConfirmacion("Mensaje", "Todo ha salido de manera correcta", "Se ha guardado"
+        + " el cliente correctamente");
+    establecerVacio();
   }
 }

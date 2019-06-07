@@ -7,10 +7,13 @@ package controlador;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.uv.gimnasio.MainApp;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,9 +23,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import modelo.Cliente;
 import modelo.Problema;
+import modelo.Promocion;
 import persistencia.ClienteDAO;
 import persistencia.ClienteDatos;
 import persistencia.ProblemaDAO;
@@ -35,6 +40,9 @@ import persistencia.ProblemaDatos;
  */
 public class ConsultarProblemaController implements Initializable {
 
+  private Stage stagePrincipal = null;
+  private MainApp aplicacionPrincipal = null;
+  private ConsultarClientesController controller = new ConsultarClientesController();
   @FXML
   private JFXButton bBuscar;
   @FXML
@@ -69,6 +77,22 @@ public class ConsultarProblemaController implements Initializable {
   @FXML
   private JFXButton bSeleccionar;
 
+  public Stage getStagePrincipal() {
+    return stagePrincipal;
+  }
+
+  public void setStagePrincipal(Stage stagePrincipal) {
+    this.stagePrincipal = stagePrincipal;
+  }
+
+  public MainApp getAplicacionPrincipal() {
+    return aplicacionPrincipal;
+  }
+
+  public void setAplicacionPrincipal(MainApp aplicacionPrincipal) {
+    this.aplicacionPrincipal = aplicacionPrincipal;
+  }
+  
   private void cargarProblemas(String nombre) {
     ProblemaDAO persistenciaProblemas = new ProblemaDatos();
     ClienteDAO persistenciaCliente = new ClienteDatos();
@@ -113,7 +137,7 @@ public class ConsultarProblemaController implements Initializable {
       problemaDetallado = FXCollections.observableArrayList();
       problemaDetallado.add(problema);
     }else{
-      //Mostrar mensaje seleccionar problema
+      controller.mostrarAlerta("Advertencia", "Sea cuidadoso", "Debe de seleccionar un problema de la tabla");
       problemaDetallado = FXCollections.observableArrayList();
     }
    
@@ -158,10 +182,11 @@ public void seleccionar(){
     if(problema !=null){
       ProblemaDAO persistenciaProblema = new ProblemaDatos();
       if(persistenciaProblema.cambiarEstado(problema)){
-        //Mensaje guardado
+        controller.mostrarConfirmacion("Mensaje", "Todo de maravilla", "El estado se ha acctualizado correctamente");
       }else{
-        //Mensaje error
+        controller.mostrarError("Error", "Algo salio mal en la base de datos", "El estado no se cambio correctemente");
       }
+      cargarProblemas("");
       cargarTablaProblemaSencillo();
     }
   }
@@ -171,6 +196,15 @@ public void seleccionar(){
     cargarProblemas(tfBuscar.getText());
     cargarTablaProblemaSencillo();
     problemaDetallado = FXCollections.observableArrayList();
+  }
+  
+  @FXML
+  public void cerrar(){
+    try {
+      aplicacionPrincipal.mostrarVentanaPrincipal();
+    } catch (Exception ex) {
+      Logger.getLogger(ConsultarProblemaController.class.getName()).log(Level.SEVERE, null, ex);
+    }
   }
   
   /**

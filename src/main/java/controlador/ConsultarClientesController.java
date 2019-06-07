@@ -166,10 +166,26 @@ public class ConsultarClientesController implements Initializable {
    * @param cabeceraMensaje Un String que es la cabecera del mensaje
    * @param mensaje Un string que es el mensaje que se muestra 
    */
-  private void mostrarAlerta(String titulo, String cabeceraMensaje, String mensaje) {
+  public void mostrarAlerta(String titulo, String cabeceraMensaje, String mensaje) {
     Alert alert = new Alert(Alert.AlertType.WARNING);
     alert.setTitle(titulo);
     alert.setHeaderText(cabeceraMensaje);
+    alert.setContentText(mensaje);
+    alert.showAndWait();
+  }
+  
+  public void mostrarConfirmacion(String titulo, String cabeceraMensaje, String mensaje) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle(titulo);
+    alert.setHeaderText(cabeceraMensaje);
+    alert.setContentText(mensaje);
+    alert.showAndWait();
+  }
+  
+  public void mostrarError(String titulo, String cabecera, String mensaje) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle(titulo);
+    alert.setHeaderText(cabecera);
     alert.setContentText(mensaje);
     alert.showAndWait();
   }

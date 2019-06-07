@@ -18,9 +18,9 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <ImageView fitHeight="55.0" fitWidth="118.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="143.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/logo.jpeg" />
+            <Image url="@../images/Logo%20SCG.png" />
          </image>
       </ImageView>
       <JFXTextField fx:id="tfNombres" layoutX="90.0" layoutY="125.0" prefHeight="25.0" prefWidth="127.0" unFocusColor="#82adf2" />

@@ -31,7 +31,7 @@
       </Label>
       <JFXButton fx:id="bAceptar" buttonType="RAISED" layoutX="131.0" layoutY="299.0" onAction="#seleccionar" style="-fx-background-color: #82adf2;" text="Aceptar" />
       <JFXButton fx:id="bCancelar" buttonType="RAISED" layoutX="263.0" layoutY="299.0" onAction="#cancelar" style="-fx-background-color: #82adf2;" text="Canelar" />
-      <Text layoutX="153.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscripción Cliente">
+      <Text layoutX="97.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscripción Cliente">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>

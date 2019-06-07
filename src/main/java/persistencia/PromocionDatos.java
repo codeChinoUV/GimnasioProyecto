@@ -48,7 +48,7 @@ public class PromocionDatos implements PromocionDAO {
       while (rs != null && rs.next()) {
         Promocion prom = new Promocion();
         prom.setNombre(rs.getString("nombre"));
-        prom.setMontoDescuento(rs.getInt("monto_descuento"));
+        prom.setMontoDescuento(rs.getDouble("monto_descuento"));
         Date fechaInicio = rs.getDate("fecha_Inicio");
         LocalDate fechaInicioL = LocalDate.of(fechaInicio.getYear() + 1900, fechaInicio.getMonth() + 1, fechaInicio.getDate());
         prom.setFecha_inicio(fechaInicioL);
@@ -56,7 +56,7 @@ public class PromocionDatos implements PromocionDAO {
         LocalDate fechaFinL = LocalDate.of(fechaFin.getYear() + 1900, fechaFin.getMonth() + 1, fechaFin.getDate());
         prom.setFecha_fin(fechaFinL);
         prom.setDescripcion(rs.getString("descripcion"));
-        prom.setId(rs.getInt("id_promocion"));
+       // prom.setId(rs.getInt("id_promocion"));
 
         listaPromociones.add(prom);
 
@@ -126,7 +126,7 @@ public class PromocionDatos implements PromocionDAO {
     Connection conexion;
     conexion = new Conexion().getCon();
     Statement consulta;
-    String query = "INSERT INTO promocion(nombre,monto_descuento,fecha_inicio,fecha_fin,descripcion,id_promocion) VALUES ('" + promocion.getNombre() + "','" + promocion.getMontoDescuento() + "','" + promocion.getFecha_inicio() + "','" + promocion.getFecha_fin() + "','" + promocion.getDescripcion() + "','" + promocion.getId() + "');";
+    String query = "INSERT INTO promocion(nombre,monto_descuento,fecha_inicio,fecha_fin,descripcion) VALUES ('" + promocion.getNombre() + "','" + promocion.getMontoDescuento() + "','" + promocion.getFecha_inicio() + "','" + promocion.getFecha_fin() + "','" + promocion.getDescripcion() + "');";
     System.out.println(query);
     try {
       consulta = conexion.createStatement();

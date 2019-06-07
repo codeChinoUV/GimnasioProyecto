@@ -15,17 +15,18 @@
          </image>
       </ImageView>
       <JFXButton fx:id="btConsultarCliente" layoutX="52.0" layoutY="250.0" onAction="#ventanaConsultaClientes" style="-fx-background-color: #5e9bff;" text="Consultar clientes" />
-      <JFXButton fx:id="btnAdministrarProm" layoutX="263.0" layoutY="250.0" onAction="#ventanaPromociones" style="-fx-background-color: #5e9bff;" text="Administrar Promociones" />
+      <JFXButton fx:id="btnAdministrarProm" layoutX="188.0" layoutY="250.0" onAction="#ventanaPromociones" style="-fx-background-color: #5e9bff;" text="Administrar Promociones" />
       <Text fill="WHITE" layoutX="109.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SISTEMA DE CONTROL DE GIMNASIO">
          <font>
             <Font name="Trebuchet MS" size="29.0" />
          </font>
       </Text>
-      <JFXButton layoutX="487.0" layoutY="250.0" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #5e9bff;" text="Bruno" />
+      <JFXButton fx:id="bInscribirCliente" layoutX="365.0" layoutY="250.0" onAction="#ventanaInscribirCliente" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #5e9bff;" text="Inscribir Cliente" />
       <ImageView fitHeight="101.0" fitWidth="260.0" layoutX="199.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Logo%20SCG.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="bConsultarCliente" layoutX="500.0" layoutY="250.0" onAction="#ventanaConsultarProblema" style="-fx-background-color: #5e9bff;" text="Consultar Problema" />
    </children>
 </AnchorPane>

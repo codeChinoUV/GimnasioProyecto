@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import persistencia.PromocionDAO;
 import persistencia.PromocionDatos;
 
@@ -72,7 +75,15 @@ public class RealizarPromocionController implements Initializable {
 
   private void cargarTabla() {
     tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-    tcDescuento.setCellValueFactory(new PropertyValueFactory<>("montoDescuento"));
+    //tcDescuento.setCellValueFactory(new PropertyValueFactory<>("montoDescuento"));
+    tcDescuento.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Promocion, String>, ObservableValue<String>>() {
+      public ObservableValue<String> call(TableColumn.CellDataFeatures<Promocion, String> p) {
+        double descuento = p.getValue().getMontoDescuento() * 100;
+        String descuentoString = "" + descuento+ "%"; 
+        return new SimpleStringProperty(descuentoString);
+      }
+    }
+        );
     recuperarPromocionesActivas();
     tPromocion.setItems(promocionesDisponibles);
   }

@@ -41,11 +41,11 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <JFXButton fx:id="bModificarDatos" buttonType="RAISED" layoutX="14.0" layoutY="420.0" onAction="#cambiarAModificarDatos" style="-fx-background-color: #82adf2;" text="Modificar datos" />
-      <JFXButton fx:id="bSalir" layoutX="727.0" layoutY="420.0" onAction="#salir" style="-fx-background-color: #82adf2;" text="Salir" />
-      <ImageView fitHeight="55.0" fitWidth="118.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <JFXButton fx:id="bModificarDatos" buttonType="RAISED" layoutX="667.0" layoutY="420.0" onAction="#cambiarAModificarDatos" style="-fx-background-color: #82adf2;" text="Modificar datos" />
+      <JFXButton fx:id="bSalir" layoutX="14.0" layoutY="420.0" onAction="#salir" style="-fx-background-color: #82adf2;" text="Salir" />
+      <ImageView fitHeight="61.0" fitWidth="147.0" layoutX="4.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/logo.jpeg" />
+            <Image url="@../images/Logo%20SCG.png" />
          </image>
       </ImageView>
    </children>

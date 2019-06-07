@@ -3,6 +3,7 @@ package com.uv.gimnasio;
 import controlador.AdministrarPromocionesController;
 import controlador.AgregarPromocionController;
 import controlador.ConsultarClientesController;
+import controlador.ConsultarProblemaController;
 import controlador.VentanaPrincipalController;
 import controlador.ModificarDatosController;
 import controlador.InscribirClienteController;
@@ -104,8 +105,22 @@ public class MainApp extends Application {
     stagePrincipal.centerOnScreen();
   }
 
+  public void mostrarVentanaConsultarProblema() throws IOException{
+    FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/ConsultarProblema.fxml"));
+    rootPane = (AnchorPane) loader.load();
+    Scene scene = new Scene(rootPane);
+    stagePrincipal.setTitle("Registro de promociones");
+    stagePrincipal.setScene(scene);
+    ConsultarProblemaController controller = loader.getController();
+    controller.setAplicacionPrincipal(this);
+    stagePrincipal.show();
+    stagePrincipal.centerOnScreen();
+  }
+  
   public static void main(String[] args) {
     launch(args);
   }
+  
+  
 
 }

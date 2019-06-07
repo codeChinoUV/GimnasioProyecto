@@ -235,6 +235,7 @@ public class ModificarDatosController implements Initializable {
           mostrarConfirmacion("Todo bien", "La actualizacion se ha realizado correctamente",
               "La informacion del cliente " + clienteModificado.getNombre() + " se ha actualizado "
               + "correctamente");
+          cancelar();
         } else {
           mostrarError("Error", "Algo ha salido mal en la base de datos", "No se almacenaron los "
               + "cambios realizados al cliente");

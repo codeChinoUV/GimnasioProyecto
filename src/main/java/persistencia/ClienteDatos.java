@@ -120,7 +120,7 @@ public class ClienteDatos implements ClienteDAO {
   public boolean actualizarCliente(Cliente cliente) {
     if (cliente != null) {
       String query = "UPDATE cliente SET nombre ='" + cliente.getNombre() + "', paterno ='"
-          + cliente.getApellidoPaterno() + "', materno = '" + cliente.getApellidoPaterno() + "',"
+          + cliente.getApellidoPaterno() + "', materno = '" + cliente.getApellidoMaterno() + "',"
           + " telefono ='" + cliente.getTelefono() + "', direccion = '" + cliente.getDireccion()
           + "', correo_electronico = '" + cliente.getCorreoElectronico() + "' WHERE id_cliente ="
           + cliente.getId() + ";";

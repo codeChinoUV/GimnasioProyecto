@@ -22,38 +22,71 @@ import javafx.fxml.Initializable;
  * @author irvin
  */
 public class VentanaPrincipalController implements Initializable {
-  @FXML
-    private JFXButton btConsultarCliente;
 
-    @FXML
-    private JFXButton btnAdministrarProm;
-    MainApp programaPrincipal;
+  @FXML
+  private JFXButton btConsultarCliente;
+
+  @FXML
+  private JFXButton btnAdministrarProm;
+
+  @FXML
+  private JFXButton bInscribirCliente;
+
+  @FXML
+  private JFXButton bConsultarCliente;
+
+  MainApp programaPrincipal;
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     // TODO
-  }  
+  }
+
   @FXML
-  public void ventanaConsultaClientes(ActionEvent event){
-        try {
-            programaPrincipal.mostrarVentanaConsultarClientes();
-        } catch (IOException ex) {
-          ex.printStackTrace();
-            Logger.getLogger(ConsultarClientesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+  public void ventanaConsultaClientes(ActionEvent event) {
+    try {
+      programaPrincipal.mostrarVentanaConsultarClientes();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      Logger.getLogger(ConsultarClientesController.class.getName()).log(Level.SEVERE, null, ex);
     }
+
+  }
+
   @FXML
-  public void ventanaPromociones(ActionEvent event){
-        try {
- 
-            programaPrincipal.mostrarVentanaAdministrarPromocion();
-        } catch (IOException ex) {
-          ex.printStackTrace();
-            Logger.getLogger(AdministrarPromocionesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+  public void ventanaPromociones(ActionEvent event) {
+    try {
+
+      programaPrincipal.mostrarVentanaAdministrarPromocion();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      Logger.getLogger(AdministrarPromocionesController.class.getName()).log(Level.SEVERE, null, ex);
     }
-  public void setProgramaPrincipal(MainApp programaPrincipal){
+
+  }
+  
+  @FXML
+  public void ventanaInscribirCliente(){
+    try {
+      programaPrincipal.mostrarVentanaInscribirCliente();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      Logger.getLogger(AdministrarPromocionesController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  @FXML
+  public void ventanaConsultarProblema(){
+    try {
+
+      programaPrincipal.mostrarVentanaConsultarProblema();
+    } catch (IOException ex) {
+      ex.printStackTrace();
+      Logger.getLogger(AdministrarPromocionesController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+  
+  public void setProgramaPrincipal(MainApp programaPrincipal) {
     this.programaPrincipal = programaPrincipal;
   }
 }

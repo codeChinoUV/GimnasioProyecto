@@ -50,19 +50,23 @@ public class AgregarPromocionController implements Initializable {
   @FXML
   public void registrarPromocion(ActionEvent event){
       String nombre = tfRnombre.getText();
-      int montoDescuento = Integer.parseInt(tfRdescuento.getText());
+      double montoDescuento = Double.parseDouble(tfRdescuento.getText());
       LocalDate fechaInicio = dpRfechaInicio.getValue();
       LocalDate fechaFin = dpRfechaFin.getValue();
       String descripcion = taRdescripcion.getText();
-      int idPromocion = Integer.parseInt(tfRid.getText());
+      //int idPromocion = Integer.parseInt(tfRid.getText());
       
-      if((nombre.equals("") != true) && ("".equals(montoDescuento) != true) && (fechaInicio.equals("") != true) && (fechaFin.equals("") != true) && (descripcion.equals("") != true) && ("".equals(idPromocion) != true)){
-          Promocion promocion = new Promocion(idPromocion,nombre,fechaInicio,fechaFin,montoDescuento,descripcion);
+      if((nombre.equals("") != true) && ("".equals(montoDescuento) != true) && (fechaInicio.equals("") != true) && (fechaFin.equals("") != true) && (descripcion.equals("") != true)){
+        if(montoDescuento > 0 && montoDescuento < 1){
+          Promocion promocion = new Promocion(nombre,fechaInicio,fechaFin,montoDescuento,descripcion);
           System.out.println(promo.nuevaPromocion(promocion));
           promocionest = FXCollections.observableArrayList();
           promocionest.add(promocion);
           JOptionPane.showMessageDialog(null, "Promocion agregada exitosamente");
           limpiar();
+        }else{
+          JOptionPane.showMessageDialog(null, "El descuento tiene que estar entre 1% y 99%");
+        }  
       }else{
         JOptionPane.showMessageDialog(null, "Rellene todos los campos");
       }
@@ -78,7 +82,6 @@ public class AgregarPromocionController implements Initializable {
         dpRfechaInicio.getEditor().clear();
         dpRfechaFin.getEditor().clear();
         taRdescripcion.setText("");
-        tfRid.setText("");
     }
    @FXML
    public void regresarAdministracion(ActionEvent event){

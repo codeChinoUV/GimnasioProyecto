@@ -21,7 +21,7 @@
       <JFXButton fx:id="btnCancelar" layoutX="177.0" layoutY="470.0" onAction="#cancelarAccion" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #82adf2;" text="Cancelar" />
       <ImageView fitHeight="73.0" fitWidth="187.0" layoutX="39.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Cuarto%20Semestre/Procesos%20de%20Ing%20Soft/ProyectoGimnasio/ProyectoGimnasio/src/main/resources/images/logo.jpeg" />
+            <Image url="@../images/Logo%20SCG.png" />
          </image>
       </ImageView>
       <Text layoutX="55.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="55.845703125">
@@ -30,36 +30,30 @@
          </font>
       </Text>
       <JFXTextField fx:id="tfnombre" labelFloat="true" layoutX="55.0" layoutY="123.0" prefHeight="25.0" prefWidth="214.0" promptText="Nombre de PROMOCIÓN" />
-      <Text layoutX="55.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monto de descuento" wrappingWidth="144.845703125">
+      <Text layoutX="55.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monto de descuento" wrappingWidth="144.845703125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="tfDescuento" labelFloat="true" layoutX="55.0" layoutY="178.0" prefHeight="25.0" prefWidth="214.0" promptText="Descuento de PROMOCIÓN" />
-      <Text layoutX="55.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio" wrappingWidth="78.845703125">
+      <JFXTextField fx:id="tfDescuento" labelFloat="true" layoutX="55.0" layoutY="188.0" prefHeight="25.0" prefWidth="214.0" promptText="Descuento de PROMOCIÓN" />
+      <Text layoutX="55.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha inicio" wrappingWidth="78.845703125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <JFXDatePicker fx:id="dpFechaInicio" layoutX="142.0" layoutY="221.0" onAction="#modificarPromocion" prefHeight="28.0" prefWidth="135.0" promptText="Fecha promoción" />
-      <Text layoutX="55.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin" wrappingWidth="78.845703125">
+      <JFXDatePicker fx:id="dpFechaInicio" layoutX="142.0" layoutY="227.0" onAction="#modificarPromocion" prefHeight="28.0" prefWidth="135.0" promptText="Fecha promoción" />
+      <Text layoutX="55.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha fin" wrappingWidth="78.845703125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <JFXDatePicker fx:id="dpFechaFin" layoutX="142.0" layoutY="268.0" prefHeight="28.0" prefWidth="135.0" promptText="Fecha promoción" />
-      <Text layoutX="55.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="144.845703125">
+      <JFXDatePicker fx:id="dpFechaFin" layoutX="142.0" layoutY="274.0" prefHeight="28.0" prefWidth="135.0" promptText="Fecha promoción" />
+      <Text layoutX="55.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" wrappingWidth="144.845703125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <JFXTextArea fx:id="taDescripcion" layoutX="55.0" layoutY="335.0" prefHeight="46.0" prefWidth="214.0" promptText="Descripción de la PROMOCIÓN" />
-      <Text layoutX="55.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Promoción" wrappingWidth="144.845703125">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="tfID" layoutX="53.0" layoutY="419.0" prefHeight="25.0" prefWidth="214.0" promptText="ID de PROMOCIÓN" />
+      <JFXTextArea fx:id="taDescripcion" layoutX="55.0" layoutY="345.0" prefHeight="98.0" prefWidth="214.0" promptText="Descripción de la PROMOCIÓN" />
       <JFXButton fx:id="btnModificar" layoutX="654.0" layoutY="431.0" onAction="#modificarPromocion" style="-fx-background-color: #82adf2;" text="Modificar promoción" />
       <JFXButton fx:id="btnRegistrar" layoutX="824.0" layoutY="431.0" onAction="#ventanaRegistro" style="-fx-background-color: #82adf2;" text="Registrar promoción" />
       <JFXButton fx:id="btnEliminar" layoutX="498.0" layoutY="431.0" onAction="#eliminarPromocion" style="-fx-background-color: #82adf2;" text="Eliminar promoción" />
@@ -71,13 +65,12 @@
       <TableView fx:id="tablaPromociones" layoutX="325.0" layoutY="88.0" prefHeight="309.0" prefWidth="677.0">
         <columns>
           <TableColumn fx:id="tcNombre" prefWidth="145.0" text="Nombre" />
-          <TableColumn fx:id="tcDescuento" minWidth="5.0" prefWidth="66.0" text="Descuento" />
-            <TableColumn fx:id="tcFechaInicio" prefWidth="72.0" text="Fecha inicio" />
-            <TableColumn fx:id="tcFechaFin" prefWidth="60.0" text="Fecha fin" />
-            <TableColumn fx:id="tcDescripcion" prefWidth="244.0" text="Descripcion" />
-            <TableColumn fx:id="tcIdPromocion" prefWidth="89.0" text="ID Promoción" />
+          <TableColumn fx:id="tcDescuento" minWidth="5.0" prefWidth="81.0" text="Descuento" />
+            <TableColumn fx:id="tcFechaInicio" prefWidth="77.0" text="Fecha inicio" />
+            <TableColumn fx:id="tcFechaFin" prefWidth="99.0" text="Fecha fin" />
+            <TableColumn fx:id="tcDescripcion" prefWidth="185.0" text="Descripcion" />
         </columns>
       </TableView>
-      <JFXButton fx:id="btnSalir" layoutX="897.0" layoutY="29.0" onAction="#salir" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #82adf2;" text="Salir" />
+      <JFXButton fx:id="btnSalir" layoutX="380.0" layoutY="431.0" onAction="#salir" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #82adf2;" text="Salir" />
    </children>
 </AnchorPane>
