@@ -1,5 +1,6 @@
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,7 +20,8 @@ public class ConsultarProblemaController {
 
     @FXML
     private JFXButton bBuscar;
-
+    public List<Cliente> clientesO = new ArrayList<>();
+    public List<Problema> problemasO = new ArrayList<>();
     private ObservableList<Problema> problemas = null;
     private ObservableList<Cliente> clientes = null;
     
@@ -79,10 +81,32 @@ public class ConsultarProblemaController {
         tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         RecuperarProblemas();
-        RecuperarClientes();        
+        RecuperarClientes();    
+        cargarClientes();
+        cargarProblemas();
     }
     public void initialize(URL arg0, ResourceBundle arg1) {
         System.out.println("Se inicializo");
         cargarTabla();
   }
+    private void cargarClientes() {
+      clientes = FXCollections.observableArrayList();
+      if (clientesO != null) {
+        for (Cliente cliente : clientesO) {
+          System.out.println("Nombre:" + cliente.getNombre());
+          clientes.add(cliente);
+        }
+      }
+      tClientes1.setItems(clientes);
+    }
+    
+    private void cargarProblemas() {
+      problemas = FXCollections.observableArrayList();
+      if (problemasO != null) {
+        for (Problema problema : problemasO) {
+          problemas.add(problema);
+        }
+      }
+      tProblema.setItems(problemas);
+    }
 }
