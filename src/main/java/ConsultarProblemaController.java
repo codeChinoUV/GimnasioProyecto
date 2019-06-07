@@ -1,5 +1,7 @@
 import com.jfoenix.controls.JFXButton;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Cliente;
 import modelo.Problema;
+import persistencia.ClienteDAO;
+import persistencia.ClienteDatos;
 import persistencia.ProblemaDAO;
 import persistencia.ProblemaDatos;
 
@@ -17,7 +21,7 @@ public class ConsultarProblemaController {
     private JFXButton bBuscar;
 
     private ObservableList<Problema> problemas = null;
-    private ObservableList<Cliente> cliente = null;
+    private ObservableList<Cliente> clientes = null;
     
     @FXML
     private TableView<Problema> tProblema;
@@ -60,6 +64,14 @@ public class ConsultarProblemaController {
             problemas.add(problema);
         }
     }
+    private void RecuperarClientes() {
+        clientes = FXCollections.observableArrayList();
+        ClienteDAO persistenciaClientes = new ClienteDatos();
+        List<Cliente> clientesRecuperados = persistenciaClientes.recuperarClientes();
+        for (Cliente cliente:clientesRecuperados){
+            clientes.add(cliente);
+        }
+    }
     
     public void cargarTabla(){
         tcFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -67,5 +79,10 @@ public class ConsultarProblemaController {
         tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         RecuperarProblemas();
+        RecuperarClientes();        
     }
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        System.out.println("Se inicializo");
+        cargarTabla();
+  }
 }
