@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ConsultarProblemaController">
    <children>
       <ImageView fitHeight="55.0" fitWidth="118.0" layoutX="5.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -29,8 +29,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="254.0" layoutY="71.0" promptText="[PROBLEMA]" />
-      <JFXButton fx:id="bBuscar" buttonType="RAISED" layoutX="398.0" layoutY="71.0" style="-fx-background-color: #82adf2;" text="Buscar" />
+      <JFXTextField fx:id="tfBuscar" layoutX="254.0" layoutY="71.0" promptText="[PROBLEMA]" />
+      <JFXButton fx:id="bBuscar" buttonType="RAISED" layoutX="398.0" layoutY="71.0" onAction="#buscar" style="-fx-background-color: #82adf2;" text="Buscar" />
       <TableView fx:id="tProblema" layoutX="127.0" layoutY="108.0" prefHeight="90.0" prefWidth="542.0">
          <columns>
             <TableColumn fx:id="tcFecha" prefWidth="55.0" text="Fecha" />
@@ -40,14 +40,14 @@
          </columns>
       </TableView>
       <Line endX="665.0" layoutX="112.0" layoutY="62.0" startX="-115.0" />
-      <JFXButton fx:id="bCerrar" layoutX="613.0" layoutY="208.0" style="-fx-background-color: #82adf2;" text="Cerrar" />
+      <JFXButton fx:id="bCerrar" layoutX="131.0" layoutY="382.0" style="-fx-background-color: #82adf2;" text="Cerrar" />
       <TableView fx:id="tClientes" layoutX="127.0" layoutY="279.0" prefHeight="90.0" prefWidth="542.0">
          <columns>
-            <TableColumn fx:id="tcFecha" prefWidth="54.0" text="Fecha" />
-            <TableColumn fx:id="tcCliente" prefWidth="109.0" text="Cliente" />
-            <TableColumn fx:id="tcProblema" prefWidth="96.0" text="Problema" />
-            <TableColumn fx:id="tcDescripcion" minWidth="0.0" prefWidth="206.0" text="Descripción" />
-            <TableColumn fx:id="tcEstado" prefWidth="76.0" text="Estado" />
+            <TableColumn fx:id="tcFecha1" prefWidth="54.0" text="Fecha" />
+            <TableColumn fx:id="tcCliente1" prefWidth="109.0" text="Cliente" />
+            <TableColumn fx:id="tcProblema1" prefWidth="96.0" text="Problema" />
+            <TableColumn fx:id="tcDescripcion1" minWidth="0.0" prefWidth="206.0" text="Descripción" />
+            <TableColumn fx:id="tcEstado1" prefWidth="76.0" text="Estado" />
          </columns>
       </TableView>
       <Label layoutX="127.0" layoutY="258.0" text="Detalles">
@@ -55,6 +55,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton fx:id="bGuardar" layoutX="608.0" layoutY="382.0" style="-fx-background-color: #82adf2;" text="Guardar" />
+      <JFXButton fx:id="bSeleccionar" layoutX="593.0" layoutY="208.0" onAction="#seleccionar" style="-fx-background-color: #82adf2;" text="Seleccionar" />
+      <JFXButton layoutX="130.0" layoutY="208.0" onAction="#cambiarEstado" style="-fx-background-color: #82adf2;" text="Revisado" />
    </children>
 </AnchorPane>

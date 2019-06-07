@@ -15,4 +15,5 @@ import modelo.Cliente;
 public interface ClienteDAO {
   List<Cliente> recuperarClientes();
   List<Cliente> buscarClientes(String nombre);
+  Cliente recuperarClienteEspecifico(Cliente clienteBuscar);
 }

@@ -56,7 +56,7 @@ public class ClienteDatos implements ClienteDAO {
     }
     return clientes;
   }
-
+  
   @Override
   public List<Cliente> buscarClientes(String nombre) {
     //String nombreRegular = "*"+nombre+"*"; 
@@ -95,4 +95,37 @@ public class ClienteDatos implements ClienteDAO {
 
   }
 
+  public Cliente recuperarClienteEspecifico(Cliente clienteBuscar) {
+    Cliente cliente = new Cliente();
+    Connection conexion = new Conexion().getCon();
+    Statement consulta;
+    ResultSet resultados;
+    String query = "SELECT * FROM cliente WHERE id_cliente = " + clienteBuscar.getId() + ";";
+    try {
+      consulta = conexion.createStatement();
+      resultados = consulta.executeQuery(query);
+      while (resultados != null && resultados.next()) {
+        
+        cliente.setId(resultados.getInt("id_cliente"));
+        cliente.setNombre(resultados.getString("nombre"));
+        cliente.setApellidoPaterno(resultados.getString("paterno"));
+        cliente.setApellidoMaterno(resultados.getString("materno"));
+        cliente.setTelefono(resultados.getString("telefono"));
+        cliente.setDireccion(resultados.getString("direccion"));
+        cliente.setCorreoElectronico(resultados.getString("correo_electronico"));
+      }
+    } catch (SQLException errorSQL) {
+      System.out.println("SQLE: Error obteniendo datos-persistencia.ClienteDatos");
+      errorSQL.printStackTrace();
+      return null;
+    } finally {
+      try {
+        conexion.close();
+      } catch (SQLException ex) {
+        System.out.println("SQLE: CerrarConexion-persistencia.ClienteDatos");
+      }
+    }
+    return cliente;
+  }
+  
 }

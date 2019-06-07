@@ -15,5 +15,5 @@ import modelo.Problema;
 public interface ProblemaDAO {
     List<Problema> recuperarProblemas();
     List<Problema> buscarProblema(String nombre);
-        
+    boolean cambiarEstado(Problema problema);
 }

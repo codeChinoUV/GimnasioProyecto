@@ -15,7 +15,7 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/ConsultarProblema.fxml"));
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/consultarclientes.css");
+        //scene.getStylesheets().add("/styles/consultarclientes.css");
         
         stage.setTitle("Consultar problemas");
         stage.setScene(scene);

@@ -22,7 +22,7 @@ import modelo.Periodo;
  *
  * @author Miguel
  */
-public class PeriodoDatos implements periodoDAO{
+public class PeriodoDatos implements PeriodoDAO{
 
   @Override
   public Periodo recuperar(Pago pago) {
