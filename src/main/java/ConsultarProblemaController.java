@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,14 +17,14 @@ import persistencia.ClienteDatos;
 import persistencia.ProblemaDAO;
 import persistencia.ProblemaDatos;
 
-public class ConsultarProblemaController {
+public class ConsultarProblemaController implements Initializable{
 
     @FXML
     private JFXButton bBuscar;
-    public List<Cliente> clientesO = new ArrayList<>();
-    public List<Problema> problemasO = new ArrayList<>();
-    private ObservableList<Problema> problemas = null;
-    private ObservableList<Cliente> clientes = null;
+    public List<Cliente> clientes = new ArrayList<>();
+    public List<Problema> problemas = new ArrayList<>();
+    private ObservableList<Problema> problemasO;
+    private ObservableList<Cliente> clientesO;
     
     @FXML
     private TableView<Problema> tProblema;
@@ -44,7 +45,7 @@ public class ConsultarProblemaController {
     private JFXButton bCerrar;
 
     @FXML
-    private TableView<Cliente> tClientes1;
+    private TableView<Cliente> tClientes;
 
     @FXML
     private TableColumn<Cliente, String> tcCliente;
@@ -58,20 +59,20 @@ public class ConsultarProblemaController {
     @FXML
     private JFXButton bGuardar;
 
-    public void RecuperarProblemas(){
-        problemas = FXCollections.observableArrayList();
+    public void recuperarProblemas(){
+        problemasO = FXCollections.observableArrayList();
         ProblemaDAO persistenciaProblemas = new ProblemaDatos();
         List<Problema> problemasRecuperados = persistenciaProblemas.recuperarProblemas();
         for (Problema problema:problemasRecuperados){
-            problemas.add(problema);
+            problemasO.add(problema);
         }
     }
-    private void RecuperarClientes() {
-        clientes = FXCollections.observableArrayList();
+    private void recuperarClientes() {
+        clientesO = FXCollections.observableArrayList();
         ClienteDAO persistenciaClientes = new ClienteDatos();
         List<Cliente> clientesRecuperados = persistenciaClientes.recuperarClientes();
         for (Cliente cliente:clientesRecuperados){
-            clientes.add(cliente);
+            clientesO.add(cliente);
         }
     }
     
@@ -80,66 +81,36 @@ public class ConsultarProblemaController {
         tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         tcEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        RecuperarProblemas();
-        RecuperarClientes();    
+        recuperarProblemas();
+        /*recuperarClientes();    
         cargarClientes();
-        cargarProblemas();
+        cargarProblemas();*/
+        tProblema.setItems(problemasO);
     }
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("Se inicializo");
-        cargarTabla();
-  }
+    
     private void cargarClientes() {
-      clientes = FXCollections.observableArrayList();
-      if (clientesO != null) {
-        for (Cliente cliente : clientesO) {
-          System.out.println("Nombre:" + cliente.getNombre());
-          clientes.add(cliente);
+      clientesO = FXCollections.observableArrayList();
+      if (clientes != null) {
+        for (Cliente cliente : clientes) {
+          clientesO.add(cliente);
         }
       }
-      tClientes1.setItems(clientes);
+      tClientes.setItems(clientesO);
     }
     
     private void cargarProblemas() {
-      problemas = FXCollections.observableArrayList();
-      if (problemasO != null) {
-        for (Problema problema : problemasO) {
-          problemas.add(problema);
+      problemasO = FXCollections.observableArrayList();
+      if (problemas != null) {
+        for (Problema problema : problemas) {
+          problemasO.add(problema);
         }
       }
-      tProblema.setItems(problemas);
+      tProblema.setItems(problemasO);
     }
-  private void buscarProblema() {
-    String problemaABuscar = bBuscar.getText();
-    ProblemaDatos problemaPersistencia = new ProblemaDatos();
-    if (!problemaABuscar.equals("")) {
-      clientes = problemaPersistencia.buscarProblemas(problemaABuscar);
-    } else {
-      clientes = clientesPersistencia.recuperarClientes();
+    
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        System.out.println("Se inicializó");
+        cargarTabla();
     }
-    PagoDatos pagosPersistencia = new PagoDatos();
-    PeriodoDatos periodoPersistencia = new PeriodoDatos();
-    MembresiaDatos membresiaPersistencia = new MembresiaDatos();
-    for (Cliente cliente : clientes) {
-      List<Pago> pagos = pagosPersistencia.recuperarPagosSinVencer(cliente);
-      if(pagos.isEmpty()){
-        System.out.println("Vacia");
-      }else{
-        System.out.println("Contiene algo");
-      }
-      cliente.setPagos(pagos);
-      for (Pago pago : cliente.getPagos()) {
-        Periodo periodo = periodoPersistencia.recuperar(pago);
-        Membresia membresia = membresiaPersistencia.recuperar(periodo);
-        periodo.setMembresia(membresia);
-        pago.setPeriodo(periodo);
-      }
-    }
-  }
-
-  @FXML
-  public void buscarBoton(){
-    buscarCliente();
-    cargarTabla();
-  }
 }

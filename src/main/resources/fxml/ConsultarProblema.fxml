@@ -41,7 +41,7 @@
       </TableView>
       <Line endX="665.0" layoutX="112.0" layoutY="62.0" startX="-115.0" />
       <JFXButton fx:id="bCerrar" layoutX="613.0" layoutY="208.0" style="-fx-background-color: #82adf2;" text="Cerrar" />
-      <TableView fx:id="tClientes1" layoutX="127.0" layoutY="279.0" prefHeight="90.0" prefWidth="542.0">
+      <TableView fx:id="tClientes" layoutX="127.0" layoutY="279.0" prefHeight="90.0" prefWidth="542.0">
          <columns>
             <TableColumn fx:id="tcFecha" prefWidth="54.0" text="Fecha" />
             <TableColumn fx:id="tcCliente" prefWidth="109.0" text="Cliente" />

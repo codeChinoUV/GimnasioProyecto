@@ -13,6 +13,7 @@ import modelo.Problema;
  * @author Bruno
  */
 public interface ProblemaDAO {
-    public List<Problema> recuperarProblemas();
+    List<Problema> recuperarProblemas();
+    List<Problema> buscarProblema(String nombre);
         
 }
